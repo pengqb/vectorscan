@@ -9,6 +9,11 @@ set_source_files_properties(simplegrep.c PROPERTIES COMPILE_FLAGS
     "-Wall -Wno-unused-parameter")
 target_link_libraries(simplegrep hs)
 
+add_executable(sec_vs sec_vs.c)
+set_source_files_properties(sec_vs.c PROPERTIES COMPILE_FLAGS
+        "-Wall -Wno-unused-parameter")
+target_link_libraries(sec_vs hs)
+
 if (PCAP_LIBRARY)
 add_executable(pcapscan pcapscan.cc)
 set_source_files_properties(pcapscan.cc PROPERTIES COMPILE_FLAGS
@@ -23,5 +28,5 @@ set_source_files_properties(patbench.cc PROPERTIES COMPILE_FLAGS
 target_link_libraries(patbench hs pcap)
 endif()
 
-install(FILES simplegrep.c pcapscan.cc patbench.cc README.md
+install(FILES simplegrep.c sec_vs.c pcapscan.cc patbench.cc README.md
         DESTINATION ${CMAKE_INSTALL_DOCDIR}/examples)
