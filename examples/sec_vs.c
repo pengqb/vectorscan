@@ -19,11 +19,12 @@
  * 后续运行会直接加载 .db 文件，速度更快。
  */
 
+#define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
-#include <hs/hs.h>
+#include <hs.h>
 
 #define MAX_LINE_LEN 2048
 #define MAX_PATTERNS 1024
@@ -215,7 +216,7 @@ int main(int argc, char *argv[]) {
             } else {
                 fprintf(stderr, "ERROR: Unable to open %s for writing.\n", db_filename);
             }
-            hs_free_serialized_database(serialized_bytes);
+            free(serialized_bytes);
         } else {
             fprintf(stderr, "ERROR: Unable to serialize database.\n");
         }
